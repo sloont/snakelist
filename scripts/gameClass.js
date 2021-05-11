@@ -121,6 +121,10 @@ class Game {
     }
 
     updateScore = () => {
+        if (this.snake.size === 4) {
+            return this.score;
+        }
+        
         return this.score = (this.snake.size * this.snake.size) * 53 - this.refreshCount;
     }
 
