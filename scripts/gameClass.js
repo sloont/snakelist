@@ -4,6 +4,8 @@ class Game {
         this.gameboard = document.getElementById("game");
         this.direction = "down";
         this.timeout = 400;
+        this.score = 0;
+        this.refreshCount = 0;
         
     }
 
@@ -59,13 +61,19 @@ class Game {
     }
 
     displaySnake = () => {
+        let count = 0;
         for (let i = 0; i < this.snake.size; i++) {
-
+            
             let coord = this.snake.coordAt(i);
             //console.log("coordinate: " + coord.x + ", " + coord.y);
-
+            if (count > 55) {
+                count = 0;
+            }
             let snakePiece = document.getElementById("x" + coord.x + "y" + coord.y);
-            snakePiece.classList.add("snake");
+            //snakePiece.classList.add("snake");  do we need this?
+            snakePiece.classList.remove(snakePiece.classList.item(1));
+            snakePiece.classList.add("snake" + Math.floor(count/7));
+            count++
         }
     }
 
@@ -108,13 +116,19 @@ class Game {
         this.snake.unshift(next);
         const oldTail = document.getElementById("x" + this.snake.tail.coord.x + "y" + this.snake.tail.coord.y);
         oldTail.classList.remove("snake");
+        oldTail.classList.remove(oldTail.classList.item(1));
         this.snake.pop();
+    }
+
+    updateScore = () => {
+        return this.score = (this.snake.size * this.snake.size) * 53 - this.refreshCount;
     }
 
     growSnake = (next) => { //call nextLocation() as the parameter
         const nextPixel = document.getElementById("x" + next.x + "y" + next.y);
         this.snake.unshift(next);
         nextPixel.classList.remove("food");
+        this.updateScore();
     }
 
     deadSnake = () => {
@@ -138,6 +152,7 @@ class Game {
         if (next.x === 30 || next.y === 30 || next.x === -1 || next.y === -1) {
             this.deadSnake();
             console.log("you lose!");
+            console.log("SCORE:  " + this.score);
             return;
         }
 
@@ -165,18 +180,22 @@ class Game {
         //if the next pixel is food
         if (nextPixel.classList.contains("food")) {
             this.growSnake(next);
+            console.log("SCORE:  " + this.score);
             this.placeFood();
 
         } else if (nextPixel.classList.contains("snake")) {
             this.moveSnake(next);
             this.deadSnake();
             console.log("you lose!");
+            console.log("SCORE:  " + this.score);
             return;
         } else {
             this.moveSnake(next);
         }
 
         this.displaySnake();
+        this.refreshCount++;
+        this.updateScore();
 
         return setTimeout(() => {this.refresh()}, this.timeout);
     }
@@ -210,6 +229,8 @@ class Game {
 
         setTimeout(() => {this.refresh()}, this.timeout);
 
+        //this doesn't work it fires at the beginning of the game
+        //console.log("Good Job! Your score was " + this.score);
         
     }
     

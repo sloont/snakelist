@@ -33,8 +33,28 @@ main {
     width: 10px;
 }
 
-.snake {
+.snake0 {
     background: indigo !important;
+}
+
+.snake1 {
+    background: rgb(91, 9, 150) !important;
+}
+
+.snake2 {
+    background: rgb(64, 11, 169) !important;
+}
+
+.snake3 {
+    background: rgb(8, 62, 162) !important;
+}
+
+.snake4 {
+    background: rgb(6, 89, 167) !important;
+}
+
+.snake5 {
+    background: rgb(9, 121, 161) !important;
 }
 .dead-snake {
     background: crimson !important;
