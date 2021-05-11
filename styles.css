@@ -30,3 +30,7 @@ main {
 .snake {
     background: indigo !important;
 }
+
+.food {
+    background: cyan !important;
+}
