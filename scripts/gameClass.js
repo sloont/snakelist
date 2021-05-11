@@ -112,7 +112,7 @@ class Game {
         const next = this.nextLocation();
         
         //end game if you go out of bounds
-        if (next.x === 40 || next.y === 40 || next.x === -1 || next.y === -1) {
+        if (next.x === 30 || next.y === 30 || next.x === -1 || next.y === -1) {
             console.log("you lose!");
             return setTimeout(() => {this.refresh()}, this.timeout);
         }
@@ -133,12 +133,6 @@ class Game {
 
         //find the pixel in the gameboard with the matching id
         const nextPixel = document.getElementById("x" + next.x + "y" + next.y);
-
-        //currently end game based on snake size
-        if (this.snake.size >= 8) {
-            
-            return setTimeout(() => {this.refresh()}, this.timeout);
-        }
 
         //if the next pixel is food
         if (nextPixel.classList.contains("food")) {
