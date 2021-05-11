@@ -139,6 +139,7 @@ class Game {
 
             let snakePiece = document.getElementById("x" + coord.x + "y" + coord.y);
             snakePiece.classList.remove("snake");
+            snakePiece.classList.remove(snakePiece.classList.item(1));
             snakePiece.classList.add("dead-snake");
         }
     }
