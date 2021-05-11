@@ -22,7 +22,7 @@ main {
 }
 
 .pixel {
-    background: #fff;
+    background: #edf0f1;
     height: 10px;
     width: 10px;
 }
@@ -30,7 +30,10 @@ main {
 .snake {
     background: indigo !important;
 }
+.dead-snake {
+    background: crimson !important;
+}
 
 .food {
-    background: cyan !important;
+    background: goldenrod !important;
 }

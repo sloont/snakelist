@@ -101,6 +101,18 @@ class Game {
         this.snake.unshift(next);
         nextPixel.classList.remove("food");
     }
+
+    deadSnake = () => {
+        for (let i = 0; i < this.snake.size; i++) {
+
+            let coord = this.snake.coordAt(i);
+            //console.log("coordinate: " + coord.x + ", " + coord.y);
+
+            let snakePiece = document.getElementById("x" + coord.x + "y" + coord.y);
+            snakePiece.classList.remove("snake");
+            snakePiece.classList.add("dead-snake");
+        }
+    }
     
     refresh = () => {
             
@@ -113,8 +125,9 @@ class Game {
         
         //end game if you go out of bounds
         if (next.x === 30 || next.y === 30 || next.x === -1 || next.y === -1) {
+            this.deadSnake();
             console.log("you lose!");
-            return setTimeout(() => {this.refresh()}, this.timeout);
+            return;
         }
 
         if (this.snake.size > 4 && this.snake.size <= 7) {
@@ -143,6 +156,11 @@ class Game {
             this.growSnake(next);
             this.placeFood();
 
+        } else if (nextPixel.classList.contains("snake")) {
+            this.moveSnake(next);
+            this.deadSnake();
+            console.log("you lose!");
+            return;
         } else {
             this.moveSnake(next);
         }
