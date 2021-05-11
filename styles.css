@@ -11,14 +11,14 @@ main {
     position: relative;
 
    
-    height: 438px;
-    width: 438px;
+    height: 476px;
+    width: 476px;
     margin: auto;
     
     display: grid;
     grid-template-columns: repeat(40, 1fr);
     grid-template-rows: repeat(40, 1fr);
-    gap: 1px;
+    gap: 2px;
 }
 
 .pixel {

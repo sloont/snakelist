@@ -1,6 +1,6 @@
 let direction = "right";
 let snakeHead = {x: 26, y: 30};
-let mostRecent;
+let mostRecent = {x: 25, y: 30};
 
 let countX = 0;
 let countY = 0;
@@ -109,7 +109,7 @@ const playGame = (linkedList) => {
         moveSnake(linkedList, nextCoord(snakeHead, direction));
         displaySnake(linkedList);
         console.log(snakeHead);
-    }, 2000);
+    }, 1000);
 }
 
 document.addEventListener("keydown", (e) => {
