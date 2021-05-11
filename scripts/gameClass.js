@@ -125,7 +125,11 @@ class Game {
             this.timeout = 200;
         }
 
-        if (this.snake.size > 10) {
+        if (this.snake.size > 10 && this.snake.size <= 16) {
+            this.timeout = 150;
+        }
+
+        if (this.snake.size > 16) {
             this.timeout = 100;
         }
 
