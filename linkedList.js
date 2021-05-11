@@ -122,19 +122,3 @@ class LinkedList {
     }
 }
 
-const snake = new LinkedList();
-
-snake.insertFirst({x: 26, y: 30});
-snake.insertFirst({x: 25, y: 30});
-snake.insertFirst({x: 24, y: 30});
-snake.insertFirst({x: 23, y: 30});
-snake.insertFirst({x: 22, y: 30});
-snake.insertFirst({x: 21, y: 30});
-snake.insertFirst({x: 20, y: 30});
-
-snake.printList();
-
-for (let i = 0; i < snake.size; i++) {
-    let coord = snake.getAt(i);
-    console.log("coordinate: " + coord);
-}

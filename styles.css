@@ -26,3 +26,7 @@ main {
     height: 10px;
     width: 10px;
 }
+
+.snake {
+    background: indigo !important;
+}
