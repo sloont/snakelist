@@ -3,7 +3,7 @@ class Game {
         this.snake = snake;
         this.gameboard = document.getElementById("game");
         this.direction = "down";
-        this.timeout = 400;
+        this.timeout = 1000;
         
     }
 
@@ -11,19 +11,12 @@ class Game {
         let countX = 0;
         let countY = 0;
 
-        let pixel = document.createElement("div");
-
-        pixel.classList.add("pixel");
-        pixel.id = "x" + countX + "y" + countY;
-        this.gameboard.appendChild(pixel);
-
-        for (let i = 1; i < (30*30); i++) {
+        for (let i = 0; i < (40*40); i++) {
             
             const pixel = document.createElement("div");
 
             countX++;
-
-            if (i !== 0 && i % 30 === 0) {
+            if (i !== 0 && i % 40 === 0) {
                 countY++;
                 countX = 0;
             }
@@ -37,10 +30,10 @@ class Game {
     }
 
     createSnake = () => {
-        this.snake.unshift({x: 14, y: 11});
-        this.snake.unshift({x: 14, y: 12});
-        this.snake.unshift({x: 14, y: 13});
-        this.snake.unshift({x: 14, y: 14});
+        this.snake.unshift({x: 19, y: 16});
+        this.snake.unshift({x: 19, y: 17});
+        this.snake.unshift({x: 19, y: 18});
+        this.snake.unshift({x: 19, y: 19});
     }
 
     displaySnake = () => {
@@ -55,8 +48,8 @@ class Game {
     }
 
     randomCoord = () => {
-        let randX = Math.floor(Math.random() * 30);
-        let randY = Math.floor(Math.random() * 30);
+        let randX = Math.floor(Math.random() * 40);
+        let randY = Math.floor(Math.random() * 40);
         return {x: randX, y: randY};
     }
 
@@ -117,19 +110,9 @@ class Game {
             return setTimeout(() => {this.refresh()}, this.timeout);
         }
 
-        if (this.snake.size > 4 && this.snake.size <= 7) {
+        if (this.snake.size > 4) {
             this.timeout = 300;
         }
-
-        if (this.snake.size > 7 && this.snake.size <= 10) {
-            this.timeout = 200;
-        }
-
-        if (this.snake.size > 10) {
-            this.timeout = 100;
-        }
-
-        
 
         //find the pixel in the gameboard with the matching id
         const nextPixel = document.getElementById("x" + next.x + "y" + next.y);
@@ -176,7 +159,7 @@ class Game {
             }
         });
 
-        setTimeout(() => {this.refresh()}, this.timeout);
+        setTimeout(() => {this.refresh()}, 1000);
 
         
     }
