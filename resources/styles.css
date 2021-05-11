@@ -21,8 +21,14 @@ main {
     gap: 2px;
 }
 
-.pixel {
+.pixel-white {
     background: #edf0f1;
+    height: 10px;
+    width: 10px;
+}
+
+.pixel-gray {
+    background: #d1cfcf;
     height: 10px;
     width: 10px;
 }

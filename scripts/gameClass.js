@@ -13,7 +13,7 @@ class Game {
 
         let pixel = document.createElement("div");
 
-        pixel.classList.add("pixel");
+        pixel.classList.add("pixel-white");
         pixel.id = "x" + countX + "y" + countY;
         this.gameboard.appendChild(pixel);
 
@@ -27,8 +27,23 @@ class Game {
                 countY++;
                 countX = 0;
             }
+            if (countY % 2 === 0) {
+
+                if (i % 2 === 0) {
+                    pixel.classList.add("pixel-white");
+                } else {
+                    pixel.classList.add("pixel-gray");
+                }
+            } else {
+
+                if (i % 2 === 0) {
+                    pixel.classList.add("pixel-gray");
+                } else {
+                    pixel.classList.add("pixel-white");
+                }
+            }
+
             
-            pixel.classList.add("pixel");
             pixel.id = "x" + countX + "y" + countY;
             this.gameboard.appendChild(pixel);
 
@@ -115,10 +130,6 @@ class Game {
     }
     
     refresh = () => {
-            
-            
-
-        console.log(this.timeout);
         
         //save the object with the next location coords (NOT A NODE)
         const next = this.nextLocation();
@@ -171,6 +182,11 @@ class Game {
     }
 
     playGame = () => {
+        this.createGameboard();
+        this.createSnake();
+        this.placeFood();
+        this.displaySnake();
+
         document.addEventListener("keydown", e => {
             const next = this.nextLocation();
 
@@ -200,9 +216,4 @@ class Game {
 }
 
 const game = new Game(new Snake());
-game.createGameboard();
-game.createSnake();
-game.placeFood();
-game.displaySnake();
-
 game.playGame();
