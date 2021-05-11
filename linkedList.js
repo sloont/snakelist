@@ -70,14 +70,14 @@ class LinkedList {
 
         while (current) {
             if (count == index) {
-                console.log(current.data);
+                return current.data;
             }
 
             count++;
             current = current.next;
         }
 
-        return null;
+        
     }
 
     removeAt (index) {
@@ -124,12 +124,17 @@ class LinkedList {
 
 const snake = new LinkedList();
 
-snake.insertFirst(100);
-snake.insertFirst(200);
-snake.insertFirst(300);
-snake.insertLast(400);
-snake.insertAt(500, 3);
+snake.insertFirst({x: 26, y: 30});
+snake.insertFirst({x: 25, y: 30});
+snake.insertFirst({x: 24, y: 30});
+snake.insertFirst({x: 23, y: 30});
+snake.insertFirst({x: 22, y: 30});
+snake.insertFirst({x: 21, y: 30});
+snake.insertFirst({x: 20, y: 30});
 
 snake.printList();
-snake.clearList();
-snake.printList();
+
+for (let i = 0; i < snake.size; i++) {
+    let coord = snake.getAt(i);
+    console.log("coordinate: " + coord);
+}
