@@ -1,0 +1,28 @@
+html {
+    background: #000;
+}
+
+main {
+    margin-top: 5em;
+}
+
+#game {
+    
+    position: relative;
+
+   
+    height: 438px;
+    width: 438px;
+    margin: auto;
+    
+    display: grid;
+    grid-template-columns: repeat(40, 1fr);
+    grid-template-rows: repeat(40, 1fr);
+    gap: 1px;
+}
+
+.pixel {
+    background: #fff;
+    height: 10px;
+    width: 10px;
+}
