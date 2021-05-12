@@ -147,3 +147,11 @@ main {
     font-size: 2em;
     color:#edf0f1;
 }
+
+/*CONTROLS*/
+
+#controls {
+    position: absolute;
+    right: 20%;
+    top: 40%;
+}

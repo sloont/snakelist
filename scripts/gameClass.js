@@ -146,12 +146,14 @@ class Game {
                 snakePiece.classList.remove(snakePiece.classList.item(1));
                 snakePiece.classList.add("dead-snake");
                 
+                
             }, 200);
             
         }
         setTimeout(() => {
             const gameOver = document.getElementById("game-over");
             gameOver.classList.add("visible");
+            document.getElementById("playBtn").disabled = false;
         }, 800)
     }
     
@@ -210,7 +212,17 @@ class Game {
         return setTimeout(() => {this.refresh()}, this.timeout);
     }
 
+    resetGame = () => {
+        
+        try {
+            document.getElementById("game").textContent = '';
+            document.getElementById("game-over").classList.remove("visible");
+        } catch (TypeError) {};
+    }
+
     playGame = () => {
+        this.resetGame();
+        document.getElementById("playBtn").disabled = true;
         this.createGameboard();
         this.createSnake();
         this.placeFood();
