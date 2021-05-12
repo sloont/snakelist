@@ -146,6 +146,10 @@ class Game {
             snakePiece.classList.remove(snakePiece.classList.item(1));
             snakePiece.classList.add("dead-snake");
         }
+        setTimeout(() => {
+            const gameOver = document.getElementById("game-over");
+            gameOver.classList.add("visible");
+        }, 800)
     }
     
     refresh = () => {
