@@ -16,6 +16,7 @@ main {
     
     position: relative;
     border: 1px solid black;
+    background: rgb(0,136,169);
    
     height: 328px;
     width: 328px;
@@ -60,15 +61,15 @@ main {
 }
 
 .snake6 {
-    background: rgb(11, 160, 170) !important;
+    background: rgb(13, 152, 162) !important;
 }
 
 .snake7 {
-    background: rgb(13, 170, 136) !important;
+    background: rgb(10, 160, 128) !important;
 }
 
 .green-snake {
-    background: rgb(9, 128, 33) !important;
+    background: rgb(5, 106, 25) !important;
 }
 
 .dead-snake {
@@ -107,6 +108,7 @@ main {
     font-size: 3em;
     
     color: crimson;
+    opacity: 0.8;
     /*stroke*/
     text-shadow: 1px 0 0 black, 0 1px 0 black, -1px 0 0 black, 0 -1px 0 black;
     
