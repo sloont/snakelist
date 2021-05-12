@@ -3,7 +3,7 @@ class Game {
         this.snake = snake;
         this.gameboard = document.getElementById("game");
         this.direction = "down";
-        this.timeout = 400;
+        this.timeout = 300;
         this.score = 0;
         this.refreshCount = 0;
         
@@ -15,7 +15,7 @@ class Game {
 
         let pixel = document.createElement("div");
 
-        pixel.classList.add("pixel-white");
+        pixel.classList.add("pixel");
         pixel.id = "x" + countX + "y" + countY;
         this.gameboard.appendChild(pixel);
 
@@ -29,23 +29,7 @@ class Game {
                 countY++;
                 countX = 0;
             }
-            if (countY % 2 === 0) {
-
-                if (i % 2 === 0) {
-                    pixel.classList.add("pixel-white");
-                } else {
-                    pixel.classList.add("pixel-gray");
-                }
-            } else {
-
-                if (i % 2 === 0) {
-                    pixel.classList.add("pixel-gray");
-                } else {
-                    pixel.classList.add("pixel-white");
-                }
-            }
-
-            
+            pixel.classList.add("pixel");
             pixel.id = "x" + countX + "y" + countY;
             this.gameboard.appendChild(pixel);
 
@@ -61,19 +45,34 @@ class Game {
     }
 
     displaySnake = () => {
-        let count = 0;
-        for (let i = 0; i < this.snake.size; i++) {
-            
-            let coord = this.snake.coordAt(i);
-            //console.log("coordinate: " + coord.x + ", " + coord.y);
-            if (count > 55) {
-                count = 0;
+        
+        if (this.snake.size >= 56) {
+            for (let i = 0; i < this.snake.size; i++) {
+
+                let coord = this.snake.coordAt(i);
+                let snakePiece = document.getElementById("x" + coord.x + "y" + coord.y);
+
+                snakePiece.classList.add("snake");
+                snakePiece.classList.remove(snakePiece.classList.item(2)); //we really only need this for i = 57 but browser should ignore after
+                snakePiece.classList.add("green-snake");
+                
             }
-            let snakePiece = document.getElementById("x" + coord.x + "y" + coord.y);
-            //snakePiece.classList.add("snake");  do we need this?
-            snakePiece.classList.remove(snakePiece.classList.item(1));
-            snakePiece.classList.add("snake" + Math.floor(count/7));
-            count++
+
+        } else {
+
+            for (let i = 0; i < this.snake.size; i++) {
+                
+                let coord = this.snake.coordAt(i);
+                let snakePiece = document.getElementById("x" + coord.x + "y" + coord.y);
+                
+
+                snakePiece.classList.add("snake");
+                snakePiece.classList.remove(snakePiece.classList.item(2));
+                snakePiece.classList.add("snake" + Math.floor(i/7));
+                
+            }
+            
+            
         }
     }
 
@@ -121,11 +120,13 @@ class Game {
     }
 
     updateScore = () => {
+        const scorePoints = document.getElementById("score-points");
         if (this.snake.size === 4) {
-            return this.score;
+            return scorePoints.textContent = this.score;
         }
         
-        return this.score = (this.snake.size * this.snake.size) * 53 - this.refreshCount;
+        this.score = (this.snake.size * this.snake.size) * 53 - this.refreshCount;
+        return scorePoints.textContent = this.score;
     }
 
     growSnake = (next) => { //call nextLocation() as the parameter
@@ -137,14 +138,16 @@ class Game {
 
     deadSnake = () => {
         for (let i = 0; i < this.snake.size; i++) {
-
-            let coord = this.snake.coordAt(i);
-            //console.log("coordinate: " + coord.x + ", " + coord.y);
-
-            let snakePiece = document.getElementById("x" + coord.x + "y" + coord.y);
-            snakePiece.classList.remove("snake");
-            snakePiece.classList.remove(snakePiece.classList.item(1));
-            snakePiece.classList.add("dead-snake");
+            setTimeout(() => {
+                let coord = this.snake.coordAt(i);
+    
+                let snakePiece = document.getElementById("x" + coord.x + "y" + coord.y);
+                snakePiece.classList.remove("snake");
+                snakePiece.classList.remove(snakePiece.classList.item(1));
+                snakePiece.classList.add("dead-snake");
+                
+            }, 200);
+            
         }
         setTimeout(() => {
             const gameOver = document.getElementById("game-over");
@@ -166,7 +169,7 @@ class Game {
         }
 
         if (this.snake.size > 4 && this.snake.size <= 7) {
-            this.timeout = 300;
+            this.timeout = 250;
         }
 
         if (this.snake.size > 7 && this.snake.size <= 10) {
@@ -188,15 +191,17 @@ class Game {
 
         //if the next pixel is food
         if (nextPixel.classList.contains("food")) {
+            
+            this.placeFood();
             this.growSnake(next);
             console.log("SCORE:  " + this.score);
-            this.placeFood();
+            
+            this.updateScore();
 
         } else if (nextPixel.classList.contains("snake")) {
-            this.moveSnake(next);
+            //this.moveSnake(next); do we need this?
             this.deadSnake();
-            console.log("you lose!");
-            console.log("SCORE:  " + this.score);
+            this.updateScore();
             return;
         } else {
             this.moveSnake(next);
@@ -204,7 +209,7 @@ class Game {
 
         this.displaySnake();
         this.refreshCount++;
-        this.updateScore();
+        
 
         return setTimeout(() => {this.refresh()}, this.timeout);
     }
@@ -245,5 +250,3 @@ class Game {
     
 }
 
-const game = new Game(new Snake());
-game.playGame();

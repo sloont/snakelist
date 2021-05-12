@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
 html {
-    background: #000;
+    box-sizing:border-box;
+    background: #24252a;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 400;
 }
 
 main {
@@ -10,29 +15,25 @@ main {
 #game {
     
     position: relative;
-
+    border: 1px solid black;
    
-    height: 358px;
-    width: 358px;
+    height: 328px;
+    width: 328px;
     margin: auto;
     
     display: grid;
     grid-template-columns: repeat(30, 1fr);
     grid-template-rows: repeat(30, 1fr);
-    gap: 2px;
+    gap: 1px;
+    
 }
 
-.pixel-white {
-    background: #edf0f1;
+.pixel {
+    background: #848b8d;
     height: 10px;
     width: 10px;
 }
 
-.pixel-gray {
-    background: #d1cfcf;
-    height: 10px;
-    width: 10px;
-}
 
 .snake0 {
     background: indigo !important;
@@ -57,6 +58,19 @@ main {
 .snake5 {
     background: rgb(9, 121, 161) !important;
 }
+
+.snake6 {
+    background: rgb(11, 160, 170) !important;
+}
+
+.snake7 {
+    background: rgb(13, 170, 136) !important;
+}
+
+.green-snake {
+    background: rgb(9, 128, 33) !important;
+}
+
 .dead-snake {
     background: crimson !important;
 }
@@ -78,8 +92,8 @@ main {
 .opacity-background {
     position: relative;
     background: rgba(0, 0, 0, 0.5);
-    height: 358px;     /*2px more than grid*/
-    width: 358px;
+    height: 330px;     
+    width: 330px;
     
 }
 
@@ -100,4 +114,22 @@ main {
 
 .visible {
     display: block !important;
+}
+
+/*SCOREBOARD*/
+
+#score {
+    position: absolute;
+    left:20%;
+    top:20%;
+}
+
+.score-header {
+    font-size: 2em;
+    color:#edf0f1;
+}
+
+#score-points {
+    font-size: 2em;
+    color:#edf0f1;
 }
