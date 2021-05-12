@@ -22,7 +22,7 @@ main {
     
     position: relative;
     border: 1px solid #edf0f1;
-    background: rgb(0,136,169);
+    background: rgb(0, 136, 169);
    
     height: 329px;
     width: 329px;
@@ -37,7 +37,8 @@ main {
 }
 
 .pixel {
-    background: #848b8d;
+    background: #6b7172;
+    border-radius: 1px;
     height: 10px;
     width: 10px;
 }
@@ -100,8 +101,8 @@ main {
 .opacity-background {
     position: relative;
     background: rgba(0, 0, 0, 0.5);
-    height: 330px;     
-    width: 330px;
+    height: 332px;     
+    width: 332px;
     
 }
 
