@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 
 html {
-    box-sizing:border-box;
+    
     background: #24252a;
     font-family: "Noto Sans JP", sans-serif;
     font-weight: 400;
@@ -18,8 +18,8 @@ main {
     border: 1px solid black;
     background: rgb(0,136,169);
    
-    height: 328px;
-    width: 328px;
+    height: 329px;
+    width: 329px;
     margin: auto;
     
     display: grid;
@@ -127,11 +127,13 @@ main {
 }
 
 .score-header {
+    transform: scale(1,1.1);
     font-size: 2em;
     color:#edf0f1;
 }
 
 #score-points {
+    transform: scale(1,1.1);
     font-size: 2em;
     color:#edf0f1;
 }

@@ -3,7 +3,7 @@ class Game {
         this.snake = snake;
         this.gameboard = document.getElementById("game");
         this.direction = "down";
-        this.timeout = 300;
+        this.timeout = 250;
         this.score = 0;
         this.refreshCount = 0;
         
@@ -168,11 +168,7 @@ class Game {
             return;
         }
 
-        if (this.snake.size > 4 && this.snake.size <= 7) {
-            this.timeout = 250;
-        }
-
-        if (this.snake.size > 7 && this.snake.size <= 10) {
+        if (this.snake.size > 5 && this.snake.size <= 10) {
             this.timeout = 200;
         }
 
