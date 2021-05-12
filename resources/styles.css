@@ -12,6 +12,12 @@ main {
     position: relative;
 }
 
+#page-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "score game controls";
+}
+
 #game {
     
     position: relative;
@@ -21,6 +27,7 @@ main {
     height: 329px;
     width: 329px;
     margin: auto;
+    grid-area: game;
     
     display: grid;
     grid-template-columns: repeat(30, 1fr);
@@ -131,9 +138,8 @@ main {
 /*SCOREBOARD*/
 
 #score {
-    position: absolute;
-    left:20%;
-    top:20%;
+    text-align: end;
+    grid-area: score;
 }
 
 .score-header {
@@ -151,7 +157,7 @@ main {
 /*CONTROLS*/
 
 #controls {
-    position: absolute;
-    right: 20%;
-    top: 40%;
+    margin-top: 2em;
+    text-align: start ;
+    grid-area: controls;
 }
