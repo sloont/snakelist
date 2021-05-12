@@ -15,7 +15,7 @@ main {
 #game {
     
     position: relative;
-    border: 1px solid black;
+    border: 1px solid #edf0f1;
     background: rgb(0,136,169);
    
     height: 329px;
@@ -73,7 +73,7 @@ main {
 }
 
 .dead-snake {
-    background: rgb(85, 44, 25) !important;
+    background: #24252a !important;
 }
 
 .food {
