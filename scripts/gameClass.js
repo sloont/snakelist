@@ -18,7 +18,7 @@ class Game {
 
     displaySnake = () => {
         
-        if (this.snake.size >= 8) {
+        if (this.snake.size >= 56) {
             for (let i = 0; i < this.snake.size; i++) {
 
                 let coord = this.snake.coordAt(i);

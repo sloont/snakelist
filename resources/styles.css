@@ -148,13 +148,13 @@ main {
 }
 
 .score-header {
-    transform: scale(1,1.1);
+    
     font-size: 2em;
     color:#edf0f1;
 }
 
 #score-points {
-    transform: scale(1,1.1);
+    
     font-size: 2em;
     color:#edf0f1;
 }
