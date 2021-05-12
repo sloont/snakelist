@@ -1,40 +1,12 @@
 class Game {
     constructor(snake) {
         this.snake = snake;
-        this.gameboard = document.getElementById("game");
+        
         this.direction = "down";
         this.timeout = 250;
         this.score = 0;
         this.refreshCount = 0;
         
-    }
-
-    createGameboard = () => {
-        let countX = 0;
-        let countY = 0;
-
-        let pixel = document.createElement("div");
-
-        pixel.classList.add("pixel");
-        pixel.id = "x" + countX + "y" + countY;
-        this.gameboard.appendChild(pixel);
-
-        for (let i = 1; i < (30*30); i++) {
-            
-            const pixel = document.createElement("div");
-
-            countX++;
-
-            if (i !== 0 && i % 30 === 0) {
-                countY++;
-                countX = 0;
-            }
-            pixel.classList.add("pixel");
-            pixel.id = "x" + countX + "y" + countY;
-            this.gameboard.appendChild(pixel);
-
-            
-        }
     }
 
     createSnake = () => {
@@ -46,7 +18,7 @@ class Game {
 
     displaySnake = () => {
         
-        if (this.snake.size >= 56) {
+        if (this.snake.size >= 8) {
             for (let i = 0; i < this.snake.size; i++) {
 
                 let coord = this.snake.coordAt(i);
@@ -153,7 +125,7 @@ class Game {
         setTimeout(() => {
             const gameOver = document.getElementById("game-over");
             gameOver.classList.add("visible");
-            document.getElementById("playBtn").disabled = false;
+            this.enableButtons();
         }, 800)
     }
     
@@ -212,18 +184,22 @@ class Game {
         return setTimeout(() => {this.refresh()}, this.timeout);
     }
 
-    resetGame = () => {
-        
-        try {
-            document.getElementById("game").textContent = '';
-            document.getElementById("game-over").classList.remove("visible");
-        } catch (TypeError) {};
+    disableButtons = () => {
+        const buttons = document.getElementsByTagName("button");
+        for (let each of buttons) {
+            each.disabled = true;
+        }
+    }
+
+    enableButtons = () => {
+        const buttons = document.getElementsByTagName("button");
+        for (let each of buttons) {
+            each.disabled = false;
+        }
     }
 
     playGame = () => {
-        this.resetGame();
-        document.getElementById("playBtn").disabled = true;
-        this.createGameboard();
+        this.disableButtons();
         this.createSnake();
         this.placeFood();
         this.displaySnake();
