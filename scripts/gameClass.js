@@ -65,7 +65,7 @@ class Game {
             coord = this.randomCoord();
             food = document.getElementById("x" + coord.x + "y" + coord.y);
         
-        } while (food.classList.contains("snake"));
+        } while (food.classList.contains("snake") || (coord.x == 14 && coord.y == 11));
         
         food.classList.add("food");
     }
@@ -168,8 +168,8 @@ class Game {
         //if the next pixel is food
         if (nextPixel.classList.contains("food")) {
             
-            this.placeFood();
             this.growSnake(next);
+            this.placeFood();
             this.updateScore();
 
         } else if (nextPixel.classList.contains("snake")) {
