@@ -42,18 +42,44 @@ const resetGame = () => {
     
 };
 
+const disableButtons = () => {
+    const buttons = document.getElementsByTagName("button");
+    for (let each of buttons) {
+        each.disabled = true;
+    }
+}
+
+const enableButtons = () => {
+    const buttons = document.getElementsByTagName("button");
+    for (let each of buttons) {
+        each.disabled = false;
+    }
+}
+
 createGameboard();
 
 const gridlinesBtn = document.getElementById("gridlinesBtn");
 gridlinesBtn.addEventListener("click", () => {
-    document.getElementById("game").classList.toggle("no-grid");
+    const game = document.getElementById("game");
+    game.classList.toggle("no-grid");
+    if (game.classList.contains("no-grid")) {
+        document.getElementsByClassName("score-header")[0].textContent += " x 1.5";
+    } else {
+        document.getElementsByClassName("score-header")[0].textContent = "SCORE";
+    }
 });
 
 const playBtn = document.getElementById("playBtn");
 playBtn.addEventListener("click", () => {
     resetGame();
     const game = new Game(new Snake());
+    disableButtons();
     game.playGame();
 });
 
+const resetBtn = document.getElementById("resetBtn");
+resetBtn.addEventListener("click", () => {
+    enableButtons();
+    document.getElementById("score-points").textContent = 0;
+});
 

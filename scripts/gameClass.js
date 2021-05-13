@@ -7,6 +7,8 @@ class Game {
         this.score = 0;
         this.refreshCount = 0;
         
+        this.gameover = false;
+        
     }
 
     createSnake = () => {
@@ -98,6 +100,10 @@ class Game {
         }
         
         this.score = (this.snake.size * this.snake.size) * 53 - this.refreshCount;
+        if (document.getElementById("game").classList.contains("no-grid")) {
+            return scorePoints.textContent = Math.floor(this.score * 1.5);
+        }
+
         return scorePoints.textContent = this.score;
     }
 
@@ -125,8 +131,10 @@ class Game {
         setTimeout(() => {
             const gameOver = document.getElementById("game-over");
             gameOver.classList.add("visible");
-            this.enableButtons();
+            document.getElementById("resetBtn").disabled = false;
         }, 800)
+
+        this.gameover = true;
     }
     
     refresh = () => {
@@ -137,8 +145,6 @@ class Game {
         //end game if you go out of bounds
         if (next.x === 30 || next.y === 30 || next.x === -1 || next.y === -1) {
             this.deadSnake();
-            console.log("you lose!");
-            console.log("SCORE:  " + this.score);
             return;
         }
 
@@ -164,8 +170,6 @@ class Game {
             
             this.placeFood();
             this.growSnake(next);
-            console.log("SCORE:  " + this.score);
-            
             this.updateScore();
 
         } else if (nextPixel.classList.contains("snake")) {
@@ -173,6 +177,7 @@ class Game {
             this.deadSnake();
             this.updateScore();
             return;
+
         } else {
             this.moveSnake(next);
         }
@@ -184,46 +189,42 @@ class Game {
         return setTimeout(() => {this.refresh()}, this.timeout);
     }
 
-    disableButtons = () => {
-        const buttons = document.getElementsByTagName("button");
-        for (let each of buttons) {
-            each.disabled = true;
-        }
-    }
+    listener = (e) => {
 
-    enableButtons = () => {
-        const buttons = document.getElementsByTagName("button");
-        for (let each of buttons) {
-            each.disabled = false;
+        const next = this.nextLocation();
+
+        if (this.gameover == true) {
+            document.removeEventListener("keydown", this.listener);
+        }
+
+        if (e.key == 'w' && next.x !== this.snake.head.coord.x) {
+            this.direction = "up";
+            console.log("up");
+        }
+        if (e.key == 's' && next.x !== this.snake.head.coord.x) {
+            this.direction = "down";
+            console.log("down");
+        }
+        if (e.key == 'a' && next.y !== this.snake.head.coord.y) {
+            this.direction = "left";
+            console.log("left");
+        }
+        if (e.key == 'd' && next.y !== this.snake.head.coord.y) {
+            this.direction = "right";
+            console.log("right");
         }
     }
 
     playGame = () => {
-        this.disableButtons();
+
+        this.score = 0;
+        this.gameover = false;
+        
         this.createSnake();
         this.placeFood();
         this.displaySnake();
 
-        document.addEventListener("keydown", e => {
-            const next = this.nextLocation();
-
-            if (e.key == 'w' && next.x !== this.snake.head.coord.x) {
-                this.direction = "up";
-                console.log("up");
-            }
-            if (e.key == 's' && next.x !== this.snake.head.coord.x) {
-                this.direction = "down";
-                console.log("down");
-            }
-            if (e.key == 'a' && next.y !== this.snake.head.coord.y) {
-                this.direction = "left";
-                console.log("left");
-            }
-            if (e.key == 'd' && next.y !== this.snake.head.coord.y) {
-                this.direction = "right";
-                console.log("right");
-            }
-        });
+        document.addEventListener("keydown", this.listener);
 
         setTimeout(() => {this.refresh()}, this.timeout);
 

@@ -81,7 +81,8 @@ main {
 }
 
 .green-snake {
-    background: rgb(0, 139, 169) !important;
+    background: #eb4c8b !important;
+    
 }
 
 .dead-snake {
