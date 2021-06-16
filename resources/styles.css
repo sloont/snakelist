@@ -1,5 +1,189 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+#project-container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+#header h1 {
+    font-size: 32px !important;
+}
+
+#footer h1 {
+    font-size: 26px !important;
+}
+
+#main h2 {
+    font-size: 16px !important;
+}
+
+#main p {
+    font-size: 12px;
+}
+
+#aside p {
+    font-size: 8px;
+}
+
+.links li, .links a, #header h1, #footer h1 {     /*added footer stuff*/
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #edf0f1;
+    text-decoration: none;
+    
+    
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 10%;
+}
+
+/*aside container stuff*/
+
+aside {
+    text-align: center;
+    padding: 10px 10%;
+}
+
+/*footer container stuff*/
+
+footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 10%;
+}
+
+.footer-nav {
+    order: 1;
+    margin-right: auto;
+}
+
+.links li:nth-child(1) {
+    padding: 0px 20px 0 0;
+}
+
+#footer h1 {
+    order: 2;
+}
+
+/*end footer stuff here*/
+
+#header h1 {
+    cursor: pointer;
+    margin-right: auto;
+}
+
+.links {
+    list-style: none;
+}
+
+.links li {
+    display: inline-block;
+    /*fixes vertical centering the same way as the button*/
+    padding: 6px 20px 10px 0;
+}
+
+.links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.links li a:hover {
+    color: #0088a9;
+}
+
+button {
+    margin-left: 20px;
+    /*adjusts the centering for all lowercase text*/
+    padding: 6px 25px 10px 25px;
+    /**/
+    background-color: rgba(0,136,169,1);
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+
+}
+
+button:hover {
+    background-color: rgba(0,136,169,0.8);
+}
+
+#header h1:hover, #footer h1:hover {    /*added footer stuff*/
+    color: #0088a9;
+}
+
+body {
+/*BODY ELEMENT SIZE*/
+    height: 100vh;
+    width: 100vw;
+
+    display: grid;
+    grid-gap: 10px;
+    /*middle column should not stay 60rem max width--
+    --this is for testing. 86rem max is default--*/
+    grid-template-columns: 1fr minmax(0, 60rem) 1fr;
+    grid-template-rows: 75px 1fr 50px;
+    grid-template-areas: 
+    "header header header"
+    "main main main"
+    "footer footer footer";
+}
+
+#header {
+    grid-area: header;
+}
+
+#footer {
+    grid-area: footer;
+}
+
+#main {
+    grid-area: main;
+    
+
+}
+
+#aside {
+    grid-area: aside;
+    background-color: #0088a9;
+}
+
+
+p {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: justify;
+}
+
+/*/////////////SNAKELISTS//////////////////
+///////////////////////////////////////////
+/////////////////////////////////////////*/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
 html {
     
     background: #24252a;
@@ -98,28 +282,17 @@ main {
 #game-over {
     display: none;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    left: -2px;
+    top: -2px;
 }
 
 .opacity-background {
-    position: relative;
+    position: absolute;
     background: rgba(0, 0, 0, 0.5);
     height: 332px;     
     width: 332px;
     
 }
-
-/*.inner-opacity-background {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.65);
-    width: 100%;
-    height: 33%;
-    top: 50%;
-    transform: translateY(-50%);
-    
-}*/
 
 .game-over-text {
     position:absolute;
@@ -145,6 +318,7 @@ main {
 
 #score {
     text-align: end;
+    margin-right: 1em;
     grid-area: score;
 }
 
@@ -165,7 +339,235 @@ main {
 /*CONTROLS*/
 
 #controls {
-    margin-top: 2em;
+    margin-top: 1em;
     text-align: start ;
     grid-area: controls;
+}
+
+/*list styles*/
+#snake-nav {
+    margin:0;
+    padding:0;
+    text-align: start;
+}
+
+#snake-nav ul {
+    list-style: none;
+    padding-inline-start: 0px;
+    
+}
+
+#snake-nav li {
+    display: inline-block;
+}
+
+/*button styling*/
+
+.button {
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+   
+    margin-top: 13px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    
+}
+
+.bottom {
+    position: absolute;
+    left: 7px;
+    top: 7px;
+    width: 7.125em;
+    height: 3.125em;
+    background-color: rgba(0,136,169,1);
+    display: block;
+
+   
+}
+
+.top {
+    
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 7em;
+    height: 3em;
+    background: none;
+    border: 2px solid #edf0f1;
+
+    
+    
+}
+
+.label {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 600;
+    color: #edf0f1;
+    font-size: 1rem;
+    line-height: 110%;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    background: none;
+
+    padding: 1em;
+
+}
+    
+
+.button:hover .bottom {
+    left: 0;
+    top: 0;
+    background-color: #edf0f1;
+    -webkit-transition: all .20s ease-out;
+    -moz-transition: all .20s ease-out;
+    -o-transition: all .20s ease-out;
+    transition: all .20s ease-out;
+}
+
+.button:hover .label {
+    color: rgba(0,136,169,1);
+    -webkit-transition: all .20s ease-out;
+    -moz-transition: all .20s ease-out;
+    -o-transition: all .20s ease-out;
+    transition: all .20s ease-out;
+}
+
+.button-border {
+    position: absolute;
+    background-color: rgba(0,136,169,1);
+    -webkit-transition: all .25s ease-out;
+    -moz-transition: all .25s ease-out;
+    -o-transition: all .25s ease-out;
+    transition: all .25s ease-out;
+}
+
+.button:hover .button-border-left, .button:hover .button-border-right {
+    height: calc(100% + 2px);
+}
+
+.button:hover .button-border-top, .button:hover .button-border-bottom {
+    width: calc(100% + 2px);
+}
+
+.button-border-top {
+    left: -2px;
+    top: -2px;
+    width: 0;
+    height: 2px;
+}
+
+.button-border-right {
+    right: -2px;
+    top: -2px;
+    width: 2px;
+    height: 0;
+}
+
+.button-border-bottom {
+    right: -2px;
+    bottom: -2px;
+    width: 0px;
+    height: 2px;
+}
+
+.button-border-left {
+    left: -2px;
+    bottom: -2px;
+    width: 2px;
+    height: 0;
+}
+
+/*class for if the button was the most recent click*/
+
+.recentClick .bottom{
+    left: 0;
+    top: 0;
+    background-color: #edf0f1;
+}
+
+.recentClick .label {
+    color: rgba(0,136,169,1);
+}
+
+.recentClick .button-border {
+    background-color: rgba(0,136,169,1);
+}
+
+.recentClick .button-border-bottom, .recentClick .button-border-top {
+    width: calc(100% + 2px);
+}
+
+.recentClick .button-border-right, .recentClick .button-border-left {
+    height: calc(100% + 2px);
+}
+
+/*disable button*/
+
+.disabled .bottom {
+    background-color: rgba(0,136,169,0.5) !important;
+}
+
+
+/*////////LARGER BOARD///////////////////////*/
+
+@media only screen and (min-width: 1700px) {
+    #game {
+    
+        position: relative;
+        border: 2px solid #edf0f1;
+        background: #24252a;
+       
+        height: 658px;
+        width: 658px;
+        margin: auto;
+        grid-area: game;
+        
+        display: grid;
+        grid-template-columns: repeat(30, 1fr);
+        grid-template-rows: repeat(30, 1fr);
+        gap: 2px;
+        
+    }
+
+    .pixel {
+        background: #6b7172;
+        border-radius: 10%;
+        height: 20px;
+        width: 20px;
+    }
+
+    #game-over {
+        display: none;
+        position: absolute;
+        left: -4px;
+        top: -4px;
+    }
+    
+    .opacity-background {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.5);
+        height: 664px;     
+        width: 664px;
+        
+    }
+    
+    .game-over-text {
+        position:absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1,1.3);
+        width: 100%;
+        text-align: center;
+        font-size: 3em;
+        
+        color: crimson;
+        opacity: 0.8;
+        /*stroke*/
+        text-shadow: 1px 0 0 black, 0 1px 0 black, -1px 0 0 black, 0 -1px 0 black;
+        
+    }
 }

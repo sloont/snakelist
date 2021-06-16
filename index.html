@@ -1,44 +1,103 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-
-  <title>Snake Lists</title>
-  <meta name="description" content="Snake">
-  <meta name="author" content="sloont">
-
-  <link rel="stylesheet" href="resources/styles.css">
-
-</head>
-
-<body>
-<main>
-  <div id="page-content">
-    <section id="game"></section>
-    <section id="game-over">
-      <div class="opacity-background">
-        <!--<div class="inner-opacity-background"></div>-->
-        <div class="game-over-text">YOU  DIED</div>
+    <head>
+        <meta charset="utf-8">
         
-      </div>
-    </section>
-    <section id="score">
-      <div class="score-header">SCORE</div>
-      <div id="score-points">0</div>
-    </section>
-    <section id="controls">
-      <button id="playBtn">PLAY</button>
-      <button id="gridlinesBtn">GRID</button>
-      <button id="resetBtn">RESET</button>
-    </section>
-  </div>
+        <title></title>
+        <meta name="description" content="snake lists">
+        <meta name="autor" content="sloont">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="./resources/styles.css">
+    </head>
+    <body>
+        <header id="header">
+            <h1>sloont.</h1>
+            <nav aria-label="header_navigation">
+                <ul class="links">
+                    <li><a href="../index.html">home.</a></li>
+                    <li><a href="projects.html">projects.</a></li>
+                    <li><a href="">about.</a></li>
+                </ul>
+            </nav>
+        </header>
+        <aside aria-label="table_information" id="aside">
+            
+        </aside>
+        <main id="main">
+            <div id="page-content">
+                <section id="game">
+                    <div id="game-over">
+                        <div class="opacity-background">
+                            
+                            <div class="game-over-text">YOU  DIED</div>
+                            
+                        </div>
+                    </div>
+                </section>
+                <section id="score">
+                  <div class="score-header">SCORE</div>
+                  <div id="score-points">0</div>
+                </section>
+                <section id="controls">
+                  <!--<button id="playBtn">PLAY</button><br><br>
+                  <button id="gridlinesBtn">GRID</button><br><br>
+                  <button id="resetBtn">RESET</button>-->
 
-</main>
-
-  <script src="scripts/snakeClass.js"></script>
-  <script src="scripts/gameClass.js"></script>
-  <script src="scripts/runGame.js"></script>
-  
-</body>
+                  <nav id="snake-nav" aria-label="game_buttons">
+                    <ul class="buttons">
+                    <li><a href="#" class="button" id="play-btn">
+                        <div class="bottom"></div>
+                        <div class="top">
+                            <div class="label">PLAY</div>
+                            <div class="button-border button-border-top"></div>
+                            <div class="button-border button-border-right"></div>
+                            <div class="button-border button-border-bottom"></div>
+                            <div class="button-border button-border-left"></div>
+                        </div>
+                    </a></li><br><br>
+                
+                    <li><a href="#" class="button" id="grid-btn">
+                        <div class="bottom"></div>
+                        <div class="top">
+                            <div class="label">GRID</div>
+                            <div class="button-border button-border-top"></div>
+                            <div class="button-border button-border-right"></div>
+                            <div class="button-border button-border-bottom"></div>
+                            <div class="button-border button-border-left"></div>
+                        </div>
+                    </a></li><br><br>
+                    
+                
+                    <li><a href="#" class="button disabled recentClick" id="reset-btn">
+                        <div class="bottom"></div>
+                        <div class="top">
+                            <div class="label">RESET</div>
+                            <div class="button-border button-border-top"></div>
+                            <div class="button-border button-border-right"></div>
+                            <div class="button-border button-border-bottom"></div>
+                            <div class="button-border button-border-left"></div>
+                        </div>
+                    </a></li>
+                    </ul>
+                </nav>
+                </section>
+              </div>
+        </main>
+        <script src="../scripts/snakeClass.js"></script>
+        <script src="../scripts/gameClass.js"></script>
+        <script src="../scripts/runGame.js"></script>
+        
+        <footer id="footer">
+            <h1>sloont.</h1>
+            <nav aria-label="footer_navigation" class="footer-nav">
+                <ul class="links footer-links">
+                    <li><a href="#">colin.</a></li>
+                    <li><a href="#">joseph.</a></li>
+                    <li><a href="#">abel.</a></li>
+                </ul>
+            </nav>
+        </footer>
+        
+    </body>
 </html>
