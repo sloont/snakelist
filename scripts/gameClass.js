@@ -27,7 +27,7 @@ class Game {
                 let snakePiece = document.getElementById("x" + coord.x + "y" + coord.y);
 
                 snakePiece.classList.add("snake");
-                snakePiece.classList.remove(snakePiece.classList.item(2)); //we really only need this for i = 57 but browser should ignore after
+                snakePiece.classList.remove(snakePiece.classList.item(2)); //this could be causing the bug with food being placed in the body of the snake
                 snakePiece.classList.add("green-snake");
                 
             }
@@ -65,7 +65,7 @@ class Game {
             coord = this.randomCoord();
             food = document.getElementById("x" + coord.x + "y" + coord.y);
         
-        } while (food.classList.contains("snake") || (coord.x == 14 && coord.y == 11));
+        } while (food.classList.contains("snake"));
         
         food.classList.add("food");
     }
@@ -131,7 +131,8 @@ class Game {
         setTimeout(() => {
             const gameOver = document.getElementById("game-over");
             gameOver.classList.add("visible");
-            document.getElementById("resetBtn").disabled = false;
+            document.getElementById("reset-btn").className = "button";
+            
         }, 800)
 
         this.gameover = true;
@@ -167,9 +168,11 @@ class Game {
 
         //if the next pixel is food
         if (nextPixel.classList.contains("food")) {
-            
+
+            //think the order of these two method calls is causing the occasional food bug
+            this.placeFood(); 
             this.growSnake(next);
-            this.placeFood();
+            
             this.updateScore();
 
         } else if (nextPixel.classList.contains("snake")) {
@@ -221,17 +224,13 @@ class Game {
         this.gameover = false;
         
         this.createSnake();
-        this.placeFood();
         this.displaySnake();
+        this.placeFood();
 
         document.addEventListener("keydown", this.listener);
 
         setTimeout(() => {this.refresh()}, this.timeout);
-
-        //this doesn't work it fires at the beginning of the game
-        //console.log("Good Job! Your score was " + this.score);
         
     }
     
 }
-

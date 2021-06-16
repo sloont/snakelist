@@ -182,8 +182,3 @@ class Snake {
     }
 
 }
-
-//////TESTING///////////////////////////////////////////////
-const snake = new Snake;
-
-
