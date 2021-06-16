@@ -14,7 +14,7 @@ const createGameboard = () => {
 
     for (let i = 1; i < (30*30); i++) {
         
-        const pixel = document.createElement("div");
+        pixel = document.createElement("div");
 
         countX++;
 
