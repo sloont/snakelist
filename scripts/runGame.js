@@ -14,7 +14,7 @@ const createGameboard = () => {
 
     for (let i = 1; i < (30*30); i++) {
         
-        const pixel = document.createElement("div");
+        pixel = document.createElement("div");
 
         countX++;
 
@@ -58,7 +58,7 @@ const enableButtons = () => {
 
 createGameboard();
 
-const gridlinesBtn = document.getElementById("gridlinesBtn");
+const gridlinesBtn = document.getElementById("grid-btn");
 gridlinesBtn.addEventListener("click", () => {
     const game = document.getElementById("game");
     game.classList.toggle("no-grid");
@@ -69,7 +69,7 @@ gridlinesBtn.addEventListener("click", () => {
     }
 });
 
-const playBtn = document.getElementById("playBtn");
+const playBtn = document.getElementById("play-btn");
 playBtn.addEventListener("click", () => {
     resetGame();
     const game = new Game(new Snake());
@@ -77,7 +77,7 @@ playBtn.addEventListener("click", () => {
     game.playGame();
 });
 
-const resetBtn = document.getElementById("resetBtn");
+const resetBtn = document.getElementById("reset-btn");
 resetBtn.addEventListener("click", () => {
     enableButtons();
     document.getElementById("score-points").textContent = 0;
